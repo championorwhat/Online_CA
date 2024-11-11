@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Signup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #161409;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+        .header { color: #fff; }
+        .header h1 { margin: 0; font-size: 50px; padding: 20px; }
+        .header p { margin: 5px 0 0; color: #ddd; font-size: 14px; max-width: 300px; margin: 5px auto 0 auto; padding: 20px; }
+        .container { width: 300px; background: #fff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); margin: 0 auto; }
+        .form-container { padding: 20px; }
+        .form-switch { display: flex; justify-content: space-between; margin-bottom: 10px; }
+        .form-switch-btn { width: 50%; padding: 10px; border: none; background: #eee; cursor: pointer; border-radius: 5px 5px 0 0; text-align: center; }
+        .form-switch-btn.active { background: #007bff; color: white; }
+        .form { display: none; }
+        .form.active { display: block; }
+        input { width: calc(100% - 20px); padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; }
+        button { width: 100%; padding: 10px; border: none; background: #2a6fb9; color: white; border-radius: 5px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        p { color: red; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Online CA</h1>
+        <p>Revolutionizing Our Client Experience</p>
+    </div>
+    <div class="container">
+        <div class="form-container">
+            <div class="form-switch">
+                <button id="login-btn" class="form-switch-btn active" onclick="showLogin()">Login</button>
+                <button id="signup-btn" class="form-switch-btn" onclick="showSignup()">Signup</button>
+            </div>
+            <form id="login-form" class="form active" method="post" action="userLogin">
+                <h2>Login</h2>
+                <input type="email" name="login_email" placeholder="Email" required />
+                <input type="password" name="login_password" placeholder="Password" required />
+                <input type="submit" value="Login" />
+		<p id="login-message"></p>
+                <button type="button" onclick="showSignup()">Create an Account</button>
+            </form>
+            <form id="signup-form" class="form" method="post" action="userSignup">
+                <h2>Signup</h2>
+                <input type="email" name="signup_email" placeholder="Email" required />
+                <input type="password" name="signup_password" placeholder="Password" required />
+                <input type="submit" value="Signup" />
+		<p id="signup-message"></p>
+                <button type="button" onclick="showLogin()">Already have an account? Login</button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const users = {};
+
+        function showLogin() {
+            document.getElementById('login-form').classList.add('active');
+            document.getElementById('signup-form').classList.remove('active');
+            document.getElementById('login-btn').classList.add('active');
+            document.getElementById('signup-btn').classList.remove('active');
+        }
+
+        function showSignup() {
+            document.getElementById('signup-form').classList.add('active');
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('signup-btn').classList.add('active');
+            document.getElementById('login-btn').classList.remove('active');
+        }
+    </script>
+</body>
+</html>

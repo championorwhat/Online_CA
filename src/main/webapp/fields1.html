@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #6dd5fa, #ffffff);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 10px 10px 0 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .tab.active {
+            background-color: #6dd5fa;
+            color: white;
+            font-weight: bold;
+        }
+        .tab:hover {
+            background-color: #4ca1af;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            animation: fadeEffect 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+        	color: white;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #6dd5fa;
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #4ca1af;
+            border: none;
+            padding: 12px 20px;
+            font-size: 2rem;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #6dd5fa;
+        }
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+    <script>
+        function openTab(event, tabId) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabId).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector(".tab").click();
+        });
+    </script>
+</head>
+<body>
+	<h1>Income Tax Calculation Form</h1>
+	<form method="post" action="taxCalculation">
+		<table>
+			<tr>
+				<td><h2>Salary (Form 16):</h2></td>
+				<td></td>
+				<td><h2>Medical Expenses:</h2></td>
+				<td></td>
+				<td><h2>Investments:</h2></td>
+				<td></td>
+				<td><h2>Donations:</h2></td>
+				<td></td>
+				<td><h2>Interest Income:</h2></td>
+			</tr>
+			<tr>
+				<td>Salary:</td>
+				<td><input name="gross_salary" /></td>
+				<td>80D Medical Insurance Premium:</td>
+				<td><input name="80D" /></td>
+				<td>80C (EPF/Life Insurance/PPF/Others):</td>
+				<td><input name="80C" /></td>
+				<td>80G Charitable Institutions (50%):</td>
+				<td><input name="80C" /></td>
+				<td>80E Interest on higher education loan:</td>
+				<td><input name="80C" /></td>
+			</tr>
+			<tr>
+				<td>Deductions:</td>
+				<td><input name="deductions" /></td>
+				<td>80DD Expenditure for disabled dependent:</td>
+				<td><input name="80DD" /></td>
+				<td>80CCC Pension Fund:</td>
+				<td><input name="80CCC" /></td>
+				<td>80GG Scientific Research (50%):</td>
+				<td><input name="80GG" /></td>
+				<td>80EE Interest on residential house property loan:</td>
+				<td><input name="80EE" /></td>
+			</tr>
+			<tr>
+				<td>Other Income:</td>
+				<td><input name="other_sources" /></td>
+				<td>80DDB Expenditure on specified diseases:</td>
+				<td><input name="80DDB" /></td>
+				<td>80CCD(1B) NPS:</td>
+				<td><input name="80CCD1B" /></td>
+				<td>80GGC Political Party (100%):</td>
+				<td><input name="80GGC" /></td>
+				<td>80EEB Purchase of electrical vehicle:</td>
+				<td><input name="80EEB" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>80TTA Interest on savings account:</td>
+				<td><input name="80TTA" /></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>80TTB Interest on deposits (Senior Citizens):</td>
+				<td><input name="80TTB" /></td>
+			</tr>
+		</table><p>
+		<input type="submit" value="Calculate Tax">
+	</form>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Entry Form</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #6dd5fa, #ffffff);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .tab-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 10px 10px 0 0;
+            transition: background 0.3s, color 0.3s;
+        }
+        .tab.active {
+            background-color: #6dd5fa;
+            color: white;
+            font-weight: bold;
+        }
+        .tab:hover {
+            background-color: #4ca1af;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            animation: fadeEffect 0.5s;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            border-color: #6dd5fa;
+            outline: none;
+        }
+        input[type="submit"] {
+            background-color: #6dd5fa;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #4ca1af;
+        }
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
+    <script>
+        function openTab(event, tabId) {
+            const tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].style.display = "none";
+            }
+            const tabs = document.getElementsByClassName("tab");
+            for (let i = 0; i < tabs.length; i++) {
+                tabs[i].classList.remove("active");
+            }
+            document.getElementById(tabId).style.display = "block";
+            event.currentTarget.classList.add("active");
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector(".tab").click();
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Tax Calculation Form</h1>
+        
+        <!-- Tab Navigation -->
+        <div class="tab-container">
+            <div class="tab active" onclick="openTab(event, 'form16')">Salary</div>
+            <div class="tab" onclick="openTab(event, 'medical')">Medical Expense</div>
+            <div class="tab" onclick="openTab(event, 'investments')">Investments</div>
+            <div class="tab" onclick="openTab(event, 'donation')">Donations</div>
+            <div class="tab" onclick="openTab(event, 'interests')">Interests Income</div>
+        </div>
+        
+        <!-- Tab Content -->
+        <div id="form16" class="tab-content active">
+            <h2>Form 16 Data</h2>
+            <form id = "form16">
+                <label for="gross_salary">Gross Salary:</label>
+                <input type="text" id="gross_salary" name="gross_salary">
+                
+                <label for="deductions">Deductions:</label>
+                <input type="text" id="deductions" name="deductions">
+
+                <label for="other_sources">Income from other sources:</label>
+                <input type="text" id="other_sources" name="other_sources">               
+            </form>
+        </div>
+        
+        <div id="medical" class="tab-content">
+            <h2>Medical</h2>
+            <form id = "medical">
+                <label for="80D">80D Medical Insurance Premium:</label>
+                <input type="text" id="80D" name="80D">
+                
+                <label for="80DD">80DD Expenditure for disabled dependent:</label>
+                <input type="text" id="80DD" name="80DD">
+                
+                <label for="80DDB">80DDB Expenditure on specified diseases:</label>
+                <input type="text" id="80DDB" name="80DDB">
+                
+            </form>
+        </div>
+        
+        <div id="investments" class="tab-content">
+            <h2>Investments</h2>
+            <form id="investments">
+                <label for="80C">80C (EPF/Life Insurance/PPF/Others):</label>
+                <input type="text" id="80C" name="80C">
+                
+                <label for="80CCC">80CCC Pension Fund:</label>
+                <input type="text" id="80CCC" name="80CCC">
+                
+                <label for="80CCD1B">80CCD(1B) NPS:</label>
+                <input type="text" id="80CCD1B" name="80CCD1B">                                
+            </form>
+        </div>
+
+        <div id="donation" class="tab-content">
+            <h2>Donations</h2>
+            <form id="donation">
+                <label for="80G">80G Charitable Institutions (50%):</label>
+                <input type="text" id="80G" name="80G">
+                
+                <label for="80GG">80GG Scientific Research (50%):</label>
+                <input type="text" id="80GG" name="80GG">
+                
+                <label for="80GGC">80GGC Political Party (100%):</label>
+                <input type="text" id="80GGC" name="80GGC">                
+            </form>
+        </div>
+
+        <div id="interests" class="tab-content">
+            <h2>Interests</h2>
+            <form id="interests">
+                <label for="80E">80E Interest on higher education loan:</label>
+                <input type="text" id="80E" name="80E">
+                
+                <label for="80EE">80EE Interest on residential house property loan:</label>
+                <input type="text" id="80EE" name="80EE">
+                
+                <label for="80EEB">80EEB Purchase of electrical vehicle:</label>
+                <input type="text" id="80EEB" name="80EEB">
+                
+                <label for="80TTA">80TTA Interest on savings account:</label>
+                <input type="text" id="80TTA" name="80TTA">
+                
+                <label for="80TTB">80TTB Interest on deposits (Senior Citizens):</label>
+                <input type="text" id="80TTB" name="80TTB">
+            </form>
+        </div>
+        <form id="calc" method="post" action="taxCalculation">
+			<input type="submit" value="Calculate Tax">        
+    	</form>
+    </div>
+</body>
+</html>

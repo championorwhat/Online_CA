@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Tabs</title>
+    <style>
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 60%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Tab styling */
+        .tab {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab button {
+            background-color: #f4f4f9;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        .tab button.active {
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Tab content styling */
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border-top: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Input fields */
+        .tab-content label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        .tab-content input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Submit button */
+        .submit-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #555;
+        }
+    </style>
+    <script>
+        // JavaScript to handle tab switching
+        function openTab(event, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabButtons = document.querySelectorAll('.tab button');
+
+            // Hide all tab contents and remove active class from all buttons
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabButtons.forEach(button => button.classList.remove('active'));
+
+            // Show current tab content and set button to active
+            document.getElementById(tabName).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Income Tax Calculator</h1>
+        <form method="post" action="taxCalculation">
+            <div class="tab">
+                <button type="button" class="active" onclick="openTab(event, 'Salary')">Salary (Form 16)</button>
+                <button type="button" onclick="openTab(event, 'MedicalExpenses')">Medical Expenses</button>
+                <button type="button" onclick="openTab(event, 'Investments')">Investments</button>
+                <button type="button" onclick="openTab(event, 'Donations')">Donations</button>
+                <button type="button" onclick="openTab(event, 'InterestIncome')">Interest Paid</button>
+            </div>
+
+            <!-- Tab Contents -->
+            <div id="Salary" class="tab-content active">
+                <label>Gross Salary:</label>
+                <input type="text" name="gross_salary">
+                <label>Deductions:</label>
+                <input type="text" name="deductions">
+                <label>Other Income:</label>
+                <input type="text" name="other_sources">
+            </div>
+
+            <div id="MedicalExpenses" class="tab-content">
+                <label>80D Medical Insurance Premium:</label>
+                <input type="text" name="80D">
+                <label>80DD Expenditure for disabled dependent:</label>
+                <input type="text" name="80DD">
+                <label>80DDB Expenditure on specified diseases:</label>
+                <input type="text" name="80DDB">
+            </div>
+
+            <div id="Investments" class="tab-content">
+                <label>80C (EPF/Life Insurance/PPF/Others):</label>
+                <input type="text" name="80C">
+                <label>80CCC Pension Fund:</label>
+                <input type="text" name="80CCC">
+                <label>80CCD(1B) NPS:</label>
+                <input type="text" name="80CCD1B">
+            </div>
+
+            <div id="Donations" class="tab-content">
+                <label>80G Charitable Institutions (50%):</label>
+                <input type="text" name="80G">
+                <label>80GG Scientific Research (50%):</label>
+                <input type="text" name="80GG">
+                <label>80GGC Political Party (100%):</label>
+                <input type="text" name="80GGC">
+            </div>
+
+            <div id="InterestIncome" class="tab-content">
+                <label>80E Interest on higher education loan:</label>
+                <input type="text" name="80E">
+                <label>80EE Interest on residential house property loan:</label>
+                <input type="text" name="80EE">
+                <label>80EEB Purchase of electrical vehicle:</label>
+                <input type="text" name="80EEB">
+                <label>80TTA Interest on savings account:</label>
+                <input type="text" name="80TTA">
+                <label>80TTB Interest on deposits (Senior Citizens):</label>
+                <input type="text" name="80TTB">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

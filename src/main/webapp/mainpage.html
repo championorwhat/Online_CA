@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Homepage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #2a6fb9;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 50px;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin-left: 30px;
+        }
+
+        .navbar ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 8px 15px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            background-color: #004a85;
+            border-radius: 4px;
+        }
+
+        /* Main content */
+        .main-content {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                url('https://source.unsplash.com/1600x900/?business,office') no-repeat
+                center center/cover;
+            color: white;
+            height: 100vh;
+        }
+
+        .main-content h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .main-content p {
+            font-size: 20px;
+            margin-bottom: 40px;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .form-btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+            background-color: #2a6fb9;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background-color: #004a85;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #2a6fb9;
+            text-align: center;
+            color: white;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar ul {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .navbar ul li {
+                margin: 10px 0;
+            }
+
+            .main-content h1 {
+                font-size: 40px;
+            }
+
+            .main-content p {
+                font-size: 18px;
+            }
+
+            .btn {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Online CA</div>
+        <ul>
+            <li><a href="homepage.html">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content" id="home">
+        <h1>Welcome to Online CA</h1>
+        <p>Revolutionizing our client experience</p>
+        <div class="btn-container">
+            <a class="btn" href="/ITR1_Final.xlsx" download>Download Template</a>
+            <button class="btn" id="uploadBtn">Upload Excel</button>
+        </div>
+        <div class="form-btn-container">
+            <a class="btn" href="fields2.html">Fill The Form</a>
+        </div>
+        <!-- Hidden file input for upload -->
+        <input type="file" id="upload" style="display: none" accept=".xlsx, .xls" />
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">&copy; 2024 Online CA - All rights reserved.</div>
+
+    <script>
+        document.getElementById('uploadBtn').addEventListener('click', function () {
+            document.getElementById('upload').click(); // Simulate a click on the hidden file input
+        });
+
+        document.getElementById('upload').addEventListener('change', function () {
+            var file = this.files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/api/upload', { // Endpoint for file upload
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message); // Display server response
+                })
+                .catch(error => {
+                    console.error('Error uploading file:', error);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
